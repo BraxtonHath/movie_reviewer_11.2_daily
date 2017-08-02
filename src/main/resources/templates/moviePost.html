@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+</head>
+<body class="container">
+
+<form class="form-horizontal" action="/moviePost" method="post">
+    <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="title" id="title"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="genre" class="col-sm-2 control-label">Genres</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="genre" id="genre"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="imdb" class="col-sm-2 control-label">IMDB</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="imdb" id="imdb"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="releasedate" class="col-sm-2 control-label">Release Date</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="releasedate" id="releasedate"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-default" value="Submit"/>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
