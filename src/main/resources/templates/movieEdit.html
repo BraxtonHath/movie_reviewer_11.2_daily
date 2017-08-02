@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{css/styles.css}"/>
+    <link href="../static/css/styles.css" rel="stylesheet"/>
     <title></title>
 </head>
 <body class="main-body">
@@ -22,36 +22,32 @@
     </nav>
 </header>
 
-<main class="container">
-    <div class="row">
-        <div class="container">
-
-            <h3 class="">Movies</h3>
-            <div class="col-md-4" th:each="movie : ${movies}">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title" th:text="${movie.title}"></h3>
-                    </div>
-                    <div class="panel-body">
-                        <ul class="list-unstyled">
-                            <li>Genre: <span th:text="${movie.genre}"></span></li>
-                            <li><a th:href="${movie.imdb}">this is a link</a></li>
-                            <li>Release Date: <span th:text="${movie.releaseDate}"></span></li>
-                            <li><a th:href="'/movie/' + @{${movie.id}}">Review Movie</a></li>
-                        </ul>
-                    </div>
-                </div>
+<section class="container">
+    <h3>Movie Details</h3>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" th:text="${movie.title}"></h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled">
+                    <li>Genre: <span th:text="${movie.genre}"></span></li>
+                    <li><a th:href="${movie.imdb}">link to imdb</a></li>
+                    <li>Release Date: <span th:text="${movie.releaseDate}"></span></li>
+                </ul>
             </div>
         </div>
     </div>
-</main>
+</section>
 
-<section class="container">
-    <h3>add Movie</h3>
-    <form action="/moviepost" method="post">
+<hr/>
+
+<section class="container" id="">
+    <h3>Edit this Movie</h3>
+    <form th:action="'/movie/edit/' + ${movieId} + '/movieEdit'" method="post">
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" name="title" class="form-control" id="title" placeholder="Movie Title"/>
+            <input type="text" name="title" class="form-control" id="title" placeholder="Movie Title" required="required"/>
         </div>
         <div class="form-group">
             <label for="genre">Genre</label>
@@ -66,8 +62,9 @@
             <input type="text" name="releaseDate" class="form-control" id="releaseDate" placeholder="Release Date"/>
         </div>
 
-        <button type="submit" class="btn btn-default">Add Movie</button>
+        <button type="submit" class="btn btn-default">Submit Changes</button>
     </form>
 </section>
+
 </body>
 </html>

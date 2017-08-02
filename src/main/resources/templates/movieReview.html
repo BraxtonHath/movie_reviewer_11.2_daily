@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
+    <link href="../static/css/styles.css" rel="stylesheet"/>
+    <title></title>
+</head>
+<body class="container main-body">
+
+<header class="navbar navbar-inverse ">
+    <nav class="container">
+        <ul class="list-inline list-unstyled">
+            <li class="navbar-brand">Movie's</li>
+            <li class="navbar-right">
+                <ul class="list-inline list-unstyled nav-list">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="movieEdit.html"> Edit Movie</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<section class="container" >
+    <div class="row">
+        <h3>Movie Details</h3>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title" th:text="${movie.title}"></h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-unstyled">
+                        <li>Genre: <span th:text="${movie.genre}"></span></li>
+                        <li><a th:href="${movie.imdb}">link to imdb</a></li>
+                        <li>Release Date: <span th:text="${movie.releaseDate}"></span></li>
+                        <li><a th:href="'/movie/edit/' + @{${movie.id}}">edit movie</a></li>
+                    </ul>
+                </div>
+            </div>
+            <h3>Reviews for this film:</h3>
+            <!--<div class="panel panel-default" th:each="movie : ${movies}">-->
+            <div class="panel panel-default" th:each="review : ${movie.reviews}">
+                <div class="panel-heading">
+                    <div class="panel-title">Reviewer: <span th:text="${review.name}"></span></div>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-unstyled">
+                        <li><b>Stars: </b> <span th:text="${review.rating}"></span></li>
+                        <li><b>Age: </b> <span th:text="${review.age}"></span></li>
+                        <li><b>Gender: </b> <span th:text="${review.gender}"></span></li>
+                        <li><b>Occupation: </b> <span th:text="${review.occupation}"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <!--</div>-->
+        </div>
+    </div>
+</section>
+
+<hr/>
+
+<section class="container">
+    <h3>Review this Movie</h3>
+    <h3>Things with * are required</h3>
+    <form th:action="'/movie/' + ${movieId} + '/review'" method="post">
+        <input type="hidden" name="movietitle" th:value="${movie.title}"/>
+
+        <div class="form-group">
+            <label for="name">*Name</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="name"/>
+        </div>
+
+        <div class="form-group">
+            <label for="rating">*Rating</label>
+            <select class="form-control" name="rating" id="rating">
+                <option value="1">1=bad 5=good</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="age">age</label>
+            <select class="form-control" name="age" id="age">
+                <option value="not given">select age</option>
+                <option value="10-20">10-20</option>
+                <option value="21-30">21-30</option>
+                <option value="31-40">31-40</option>
+                <option value="41-50">41-50</option>
+                <option value="51-60">51-60</option>
+                <option value="61-70">61-70</option>
+                <option value="71-100">71-100</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="gender">gender</label>
+            <select class="form-control" name="gender" id="gender">
+                <option value="not given">select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="occupation">Occupation</label>
+            <input type="text" name="occupation" class="form-control" id="occupation" placeholder="Occupation"/>
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</section>
+
+</body>
+</html>
