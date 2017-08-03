@@ -64,12 +64,14 @@
     <h3>Review this Movie</h3>
     <h3>Things with * are required</h3>
     <form th:action="'/movie/' + ${movieId} + '/review'" method="post">
-        <input type="hidden" name="movietitle" th:value="${movie.title}"/>
 
         <div class="form-group">
             <label for="name">*Name</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="name"/>
         </div>
+
+
+        <input type="hidden" name="movietitle" th:value="${movie.title}"/>
 
         <div class="form-group">
             <label for="rating">*Rating</label>

@@ -49,14 +49,14 @@ public class MovieController {
 
     @RequestMapping(value = "/movie/{movieId}/review", method = RequestMethod.POST)
     public String review(@PathVariable("movieId") long movieId,
-                         @RequestParam("movietitle") String movietitle,
                          @RequestParam("name") String name,
+                         @RequestParam("movietitle") String movietitle,
                          @RequestParam("rating") int rating,
                          @RequestParam("age") String age,
                          @RequestParam("gender") String gender,
                          @RequestParam("occupation") String occupation){
         Movie movie = repo.findOne(movieId);
-        Review newReview = new Review(movietitle, name, rating, age, gender, occupation, movie);
+        Review newReview = new Review(name, movietitle, rating, age, gender, occupation, movie);
         reviewRepo.save(newReview);
         return "redirect:/movie/" + movieId;
     }
