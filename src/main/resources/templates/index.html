@@ -61,7 +61,8 @@
                             <li class="pinkText">Genre: <span th:text="${movie.genre}"></span></li>
                             <li><a th:href="${movie.imdb}">IMDB LINK</a></li>
                             <li class="text-primary">Release Date: <span th:text="${movie.releaseDate}"></span></li>
-                            <li ><a th:href="'/movie/' + @{${movie.id}}">Review Movie Click Here</a></li>
+                            <li><a th:href="'/movie/edit/' + @{${movie.id}}">edit movie</a></li>
+                            <li><a th:href="'/movie/' + @{${movie.id}}">Review Movie Click Here</a></li>
                         </ul>
                     </div>
                 </div>

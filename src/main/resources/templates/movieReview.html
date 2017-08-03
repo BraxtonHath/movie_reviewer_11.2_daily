@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{css/styles.css}"/>
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
     <title></title>
 </head>
 <body class="main-body black whiteText">
@@ -25,31 +25,31 @@
     <div class="row">
         <h3>Movie Details</h3>
         <div class="col-md-8">
-            <div class="panel panel-default">
+            <div class="panel panel-default orange">
                 <div class="panel-heading">
                     <h3 class="panel-title" th:text="${movie.title}"></h3>
                 </div>
                 <div class="panel-body">
                     <ul class="list-unstyled">
-                        <li>Genre: <span th:text="${movie.genre}"></span></li>
-                        <li><a th:href="${movie.imdb}">link to imdb</a></li>
-                        <li>Release Date: <span th:text="${movie.releaseDate}"></span></li>
+                        <li class="pinkText">Genre: <span th:text="${movie.genre}"></span></li>
+                        <li><a th:href="${movie.imdb}">IMDB LINK</a></li>
+                        <li class="text-primary">Release Date: <span th:text="${movie.releaseDate}"></span></li>
                         <li><a th:href="'/movie/edit/' + @{${movie.id}}">edit movie</a></li>
                     </ul>
                 </div>
             </div>
-            <h3>Reviews for this film:</h3>
+            <h3>Reviews</h3>
             <!--<div class="panel panel-default" th:each="movie : ${movies}">-->
-            <div class="panel panel-default" th:each="review : ${movie.reviews}">
-                <div class="panel-heading">
+                <div class="panel panel-default orange" th:each="review : ${movie.reviews}">
+                    <div class="panel-heading">
                     <div class="panel-title">Reviewer: <span th:text="${review.name}"></span></div>
                 </div>
                 <div class="panel-body">
                     <ul class="list-unstyled">
-                        <li><b>Stars: </b> <span th:text="${review.rating}"></span></li>
-                        <li><b>Age: </b> <span th:text="${review.age}"></span></li>
-                        <li><b>Gender: </b> <span th:text="${review.gender}"></span></li>
-                        <li><b>Occupation: </b> <span th:text="${review.occupation}"></span></li>
+                        <li><b>Rating 1-5 Review Gave It A </b> <span th:text="${review.rating}"></span></li>
+                        <li><b>Age Of Reviewer Is </b> <span th:text="${review.age}"></span></li>
+                        <li><b>Gender Of Reviewer Is </b> <span th:text="${review.gender}"></span></li>
+                        <li><b>Occupation Of Reviewer Is </b> <span th:text="${review.occupation}"></span></li>
                     </ul>
                 </div>
             </div>
@@ -64,15 +64,11 @@
     <h3>Review this Movie</h3>
     <h3>Things with * are required</h3>
     <form th:action="'/movie/' + ${movieId} + '/review'" method="post">
-
         <div class="form-group">
             <label for="name">*Name</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="name"/>
         </div>
-
-
         <input type="hidden" name="movietitle" th:value="${movie.title}"/>
-
         <div class="form-group">
             <label for="rating">*Rating</label>
             <select class="form-control" name="rating" id="rating">

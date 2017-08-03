@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{css/styles.css}"/>
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
     <title></title>
 </head>
 <body class="main-body black whiteText">
@@ -24,15 +24,15 @@
 <section class="container">
     <h3>Movie Details</h3>
     <div class="col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-default orange">
             <div class="panel-heading">
                 <h3 class="panel-title" th:text="${movie.title}"></h3>
             </div>
             <div class="panel-body">
                 <ul class="list-unstyled">
-                    <li>Genre: <span th:text="${movie.genre}"></span></li>
-                    <li><a th:href="${movie.imdb}">link to imdb</a></li>
-                    <li>Release Date: <span th:text="${movie.releaseDate}"></span></li>
+                    <li class="pinkText">Genre: <span th:text="${movie.genre}"></span></li>
+                    <li><a th:href="${movie.imdb}">IMDB LINK</a></li>
+                    <li class="text-primary">Release Date: <span th:text="${movie.releaseDate}"></span></li>
                 </ul>
             </div>
         </div>
@@ -45,25 +45,24 @@
     <h3>Edit this Movie</h3>
     <form th:action="'/movie/edit/' + ${movieId} + '/movieEdit'" method="post">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" name="title" class="form-control" id="title" placeholder="Movie Title" required="required"/>
+            <label for="title">Movie</label>
+            <input type="text" name="title" class="form-control" id="title" placeholder="Movie Title Here"/>
         </div>
         <div class="form-group">
             <label for="genre">Genre</label>
-            <input type="text" name="genre" class="form-control" id="genre" placeholder="Movie Genre"/>
+            <input type="text" name="genre" class="form-control" id="genre" placeholder="Movie Genre Here"/>
         </div>
         <div class="form-group">
-            <label for="imdb">imdb adress</label>
-            <input type="text" name="imdb" class="form-control" id="imdb" placeholder="imdb Address"/>
+            <label for="imdb">IMDB Link</label>
+            <input type="text" name="imdb" class="form-control" id="imdb" placeholder="IMDB Address Here"/>
         </div>
         <div class="form-group">
             <label for="releaseDate">Release Date</label>
-            <input type="text" name="releaseDate" class="form-control" id="releaseDate" placeholder="Release Date"/>
+            <input type="text" name="releaseDate" class="form-control" id="releaseDate" placeholder="Release Date Here"/>
         </div>
 
-        <button type="submit" class="btn btn-default">Submit Changes</button>
+        <button type="submit" class="btn btn-danger rainbow">Edit</button>
     </form>
 </section>
-
 </body>
 </html>
