@@ -17,6 +17,10 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     List<Review> reviews;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Movie() {}
 
     public Movie(String title, String genre, String imdb, String releaseDate) {
@@ -72,5 +76,17 @@ public class Movie {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public String getReleasedate() {
+        return releasedate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

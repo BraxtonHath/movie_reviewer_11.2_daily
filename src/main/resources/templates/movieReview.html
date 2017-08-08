@@ -34,7 +34,7 @@
                         <li class="pinkText">Genre: <span th:text="${movie.genre}"></span></li>
                         <li><a th:href="${movie.imdb}">IMDB LINK</a></li>
                         <li class="text-primary">Release Date: <span th:text="${movie.releaseDate}"></span></li>
-                        <li><a th:href="'/movie/edit/' + @{${movie.id}}">edit movie</a></li>
+                        <li><a th:href="'User/movie/edit/' + @{${movie.id}}">edit movie</a></li>
                     </ul>
                 </div>
             </div>
@@ -63,7 +63,7 @@
 <section class="container">
     <h3>Review this Movie</h3>
     <h3>Things with * are required</h3>
-    <form th:action="'/movie/' + ${movieId} + '/review'" method="post">
+    <form th:action="'/User/movie/' + ${movieId} + '/review'" method="post">
         <div class="form-group">
             <label for="name">*Name</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="name"/>

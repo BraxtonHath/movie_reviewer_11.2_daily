@@ -3,8 +3,10 @@ package io.braxton.moviereviewer.controllers;
 
 import io.braxton.moviereviewer.interfaces.MovieRepository;
 import io.braxton.moviereviewer.interfaces.ReviewRepository;
+import io.braxton.moviereviewer.interfaces.UserRepository;
 import io.braxton.moviereviewer.models.Movie;
 import io.braxton.moviereviewer.models.Review;
+import io.braxton.moviereviewer.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
 
 @Controller
 public class MovieController {
@@ -22,15 +26,20 @@ public class MovieController {
     @Autowired
     ReviewRepository reviewRepo;
 
-    @RequestMapping("/")
-    public String index(Model model) {
+    @Autowired
+    UserRepository userRepo;
+
+
+    @RequestMapping("User/moviepost")
+    public String movieCreate(Model model) {
         Iterable<Movie> movies = repo.findAll();
         model.addAttribute("movies", movies);
-        return "index";
+        return "movieCreate";
     }
 
 
-    @RequestMapping(value = "moviepost", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/moviepost", method = RequestMethod.POST)
     public String moviepost(@RequestParam ("title") String title,
                            @RequestParam ("genre") String genre,
                            @RequestParam ("imdb") String imdb,
@@ -39,52 +48,5 @@ public class MovieController {
         repo.save(newMovie);
         return "redirect:/";
     }
-
-    @RequestMapping("/movie/{movieId}")
-    public String movieReview(@PathVariable("movieId") long movieId, Model model){
-        Movie movie = repo.findOne(movieId);
-        model.addAttribute("movie", movie);
-        return "movieReview";
-    }
-
-    @RequestMapping(value = "/movie/{movieId}/review", method = RequestMethod.POST)
-    public String review(@PathVariable("movieId") long movieId,
-                         @RequestParam("name") String name,
-                         @RequestParam("movietitle") String movietitle,
-                         @RequestParam("rating") int rating,
-                         @RequestParam("age") String age,
-                         @RequestParam("gender") String gender,
-                         @RequestParam("occupation") String occupation){
-        Movie movie = repo.findOne(movieId);
-        Review newReview = new Review(name, movietitle, rating, age, gender, occupation, movie);
-        reviewRepo.save(newReview);
-        return "redirect:/movie/" + movieId;
-    }
-
-    @RequestMapping("/movie/edit/{movieId}")
-    public String editMovie(@PathVariable("movieId") long movieId, Model model){
-        Movie movie = repo.findOne(movieId);
-        model.addAttribute("movie", movie);
-        return "movieEdit";
-
-    }
-
-    @RequestMapping(value = "/movie/edit/{movieId}/movieEdit", method = RequestMethod.POST)
-    public String editMovie(@PathVariable("movieId") long movieId,
-                            @RequestParam("title") String title,
-                            @RequestParam("genre") String genre,
-                            @RequestParam("imdb") String imdb,
-                            @RequestParam("releaseDate") String releaseDate){
-
-        Movie movie = repo.findOne(movieId);
-        movie.setTitle(title);
-        movie.setGenre(genre);
-        movie.setImdb(imdb);
-        movie.setReleasedate(releaseDate);
-        repo.save(movie);
-
-        return "redirect:/movie/" + movieId;
-    }
-
 }
 

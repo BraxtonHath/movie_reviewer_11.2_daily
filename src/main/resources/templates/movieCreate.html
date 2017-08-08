@@ -22,28 +22,8 @@
 </header>
 
 <section class="container">
-    <h3>Movie Details</h3>
-    <div class="col-md-8">
-        <div class="panel panel-default orange">
-            <div class="panel-heading">
-                <h3 class="panel-title" th:text="${movie.title}"></h3>
-            </div>
-            <div class="panel-body">
-                <ul class="list-unstyled">
-                    <li class="pinkText">Genre: <span th:text="${movie.genre}"></span></li>
-                    <li><a th:href="${movie.imdb}">IMDB LINK</a></li>
-                    <li class="text-primary">Release Date: <span th:text="${movie.releaseDate}"></span></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<hr/>
-
-<section class="container" id="">
-    <h3>Edit this Movie</h3>
-    <form th:action="${movieId} + '/movieEdit'" method="post">
+    <h3 class="whiteText">Add A Movie</h3>
+    <form th:action="@{/moviepost}" method="post">
         <div class="form-group">
             <label for="title">Movie</label>
             <input type="text" name="title" class="form-control" id="title" placeholder="Movie Title Here"/>
@@ -61,8 +41,10 @@
             <input type="text" name="releaseDate" class="form-control" id="releaseDate" placeholder="Release Date Here"/>
         </div>
 
-        <button type="submit" class="btn btn-danger rainbow">Edit</button>
+        <button type="submit" class="btn btn-danger rainbow">Add</button>
     </form>
 </section>
+
+
 </body>
 </html>

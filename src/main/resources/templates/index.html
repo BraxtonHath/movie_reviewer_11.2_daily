@@ -15,37 +15,12 @@
             <li class="navbar-right">
                 <ul class="list-inline list-unstyled nav-list">
                     <li><a href="/">Home</a></li>
+                    <li><a th:href="@{User/moviepost}">Post Movie</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
 </header>
-
-
-<section class="container">
-    <h3 class="whiteText">Add A Movie</h3>
-    <form action="/moviepost" method="post">
-        <div class="form-group">
-            <label for="title">Movie</label>
-            <input type="text" name="title" class="form-control" id="title" placeholder="Movie Title Here"/>
-        </div>
-        <div class="form-group">
-            <label for="genre">Genre</label>
-            <input type="text" name="genre" class="form-control" id="genre" placeholder="Movie Genre Here"/>
-        </div>
-        <div class="form-group">
-            <label for="imdb">IMDB Link</label>
-            <input type="text" name="imdb" class="form-control" id="imdb" placeholder="IMDB Address Here"/>
-        </div>
-        <div class="form-group">
-            <label for="releaseDate">Release Date</label>
-            <input type="text" name="releaseDate" class="form-control" id="releaseDate" placeholder="Release Date Here"/>
-        </div>
-
-        <button type="submit" class="btn btn-danger rainbow">Add</button>
-    </form>
-</section>
-
 
 <section class="container">
     <div class="row">
@@ -61,8 +36,8 @@
                             <li class="pinkText">Genre: <span th:text="${movie.genre}"></span></li>
                             <li><a th:href="${movie.imdb}">IMDB LINK</a></li>
                             <li class="text-primary">Release Date: <span th:text="${movie.releaseDate}"></span></li>
-                            <li><a th:href="'/movie/edit/' + @{${movie.id}}">edit movie</a></li>
-                            <li><a th:href="'/movie/' + @{${movie.id}}">Review Movie Click Here</a></li>
+                            <li><a th:href="'User/movie/edit/' + @{${movie.id}}">edit movie</a></li>
+                            <li><a th:href="'movie/' + @{${movie.id}}">Review Movie Click Here</a></li>
                         </ul>
                     </div>
                 </div>
